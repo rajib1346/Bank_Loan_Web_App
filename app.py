@@ -7,7 +7,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-model_path = "C:/Users/acer/Bank Loan/Models/model.pkl"
+model_path = "models/model.pkl"
 with open(model_path, 'rb') as model_file:
     model = pickle.load(model_file)
 
