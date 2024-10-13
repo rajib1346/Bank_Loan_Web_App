@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval Prediction Report</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #004080;
+            padding: 15px;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #004080;
+            font-weight: bold;
+            border-bottom: 2px solid #004080;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #004080;
+        }
+
+        .details-table {
+            width: 100%;
+            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .details-table th,
+        .details-table td {
+            padding: 12px;
+            border: 1px solid #ccc;
+        }
+
+        .details-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .details-table td {
+            background-color: #fafafa;
+        }
+
+        .status-approved {
+            color: green;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .status-rejected {
+            color: red;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .btn {
+            background-color: #004080;
+            border: none;
+            font-size: 1em; /* Regular size */
+            padding: 10px 15px; /* Regular padding */
+            margin-top: 20px;
+            color: white; /* Text color */
+            font-weight: bold; /* Bold text */
+        }
+
+        .btn:hover {
+            background-color: #003060;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Align buttons to the edges */
+            margin-top: 20px;
+        }
+
+        .time-generated {
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Loan Approval Prediction Report</a>
+    </nav>
+
+    <div class="container">
+        <h2>Formal Loan Approval Prediction Report</h2>
+
+        <!-- Applicant Details Section -->
+        <div class="section-title">Applicant Information</div>
+        <table class="details-table">
+            <tr>
+                <th>Name</th>
+                <td>{{ name }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ 'Male' if gender == 0 else 'Female' }}</td>
+            </tr>
+            <tr>
+                <th>Marital Status</th>
+                <td>{{ 'No' if married == 0 else 'Yes' }}</td>
+            </tr>
+            <tr>
+                <th>Dependents</th>
+                <td>{{ dependents }}</td>
+            </tr>
+            <tr>
+                <th>Education Level</th>
+                <td>{{ 'Not Graduate' if education == 0 else 'Graduate' }}</td>
+            </tr>
+            <tr>
+                <th>Self-Employed</th>
+                <td>{{ 'No' if self_employed == 0 else 'Yes' }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ address }}</td>
+            </tr>
+        </table>
+
+        <!-- Loan Details Section -->
+        <div class="section-title">Loan Information</div>
+        <table class="details-table">
+            <tr>
+                <th>Loan Amount</th>
+                <td>BDT {{ loan_amount*1000 }}</td>
+            </tr>
+            <tr>
+                <th>Loan Term</th>
+                <td>{{ loan_amount_term }} days</td>
+            </tr>
+            <tr>
+                <th>Credit History</th>
+                <td>{{ 'No' if credit_history == 0 else 'Yes' }}</td>
+            </tr>
+            <tr>
+                <th>Property Area</th>
+                <td>{{ 'Urban' if property_area == 0 else 'Rural' if property_area == 1 else 'Semiurban' }}</td>
+            </tr>
+            <tr>
+                <th>Total Income</th>
+                <td>BDT {{ total_income }}</td>
+            </tr>
+        </table>
+
+        <!-- Prediction Result Section -->
+        <div class="section-title">Prediction Result</div>
+        <p class="{{ 'status-approved' if result == 'Approved' else 'status-rejected' }}">
+            Loan Status: {{ result }}
+        </p>
+
+        <p class="time-generated"><strong>Report Generated At:</strong> {{ report_generation_time }}</p>
+         <p class="time-generated"><strong>Report Generated At:</strong> {{ execution_time }} Second</p>
+
+        <!-- Buttons Section -->
+        <div class="button-container">
+            <a href="/" class="btn">Return to Input Form</a>
+            <button class="btn" onclick="window.print()">Print Report</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
